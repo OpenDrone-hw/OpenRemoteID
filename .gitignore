@@ -1,0 +1,19 @@
+# KiCad backup and history files
+*.kicad_pcb-bak
+*.kicad_sch-bak
+*-backups/
+*.bck
+*.kicad_prl
+fp-info-cache
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+__pycache__/
+*.pyc
+
+# Analyzer output (regenerable)
+*_analysis.json
