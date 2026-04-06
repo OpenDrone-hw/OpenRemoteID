@@ -1,4 +1,4 @@
-# OpenRemoteID
+# OpenRemoteID (WIP)
 
 Open-source Remote ID broadcast module for drones. FAA + EU compliant.
 
