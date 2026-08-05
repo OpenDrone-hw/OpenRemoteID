@@ -17,3 +17,7 @@ __pycache__/
 
 # Analyzer output (regenerable)
 *_analysis.json
+
+# Agent instructions (local-only)
+CLAUDE.md
+.claude/
