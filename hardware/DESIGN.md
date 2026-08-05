@@ -14,7 +14,7 @@ ESP32-C3-MINI-1 (pre-certified FCC/CE) + ATGM336H-5NR32 GPS + U.FL antenna conne
 ## Target Specs
 | Spec | Value |
 |------|-------|
-| Size | ~17×24mm |
+| Size | ~13.4×23.8mm |
 | Weight | <4g (excl. antenna puck) |
 | Power input | 5V (from FC BEC) |
 | Current | ~80mA typical, ~360mA peak (WiFi TX) |
@@ -38,7 +38,7 @@ ESP32-C3-MINI-1 (pre-certified FCC/CE) + ATGM336H-5NR32 GPS + U.FL antenna conne
 | D1 | Status LED green | 16-213/GHC-YR1S1/3T | C74338 | 0402 | 1 | $0.02 |
 | D2-D4 | TVS 5V | PESD0402V05 | C19626254 | 0402 | 3 | $0.006 |
 | SW1 | Boot/config button | B3U-1000P(M) | Omron | 2.5×3×0.7mm | 1 | $0.15 |
-| J1 | GPS antenna connector | CONUFL001-SMD-T | C2685037 | U.FL 2.6×2.6mm | 1 | $0.05 |
+| J1 | GPS antenna connector | CONUFL001-SMD-T | C22418213 | U.FL 2.6×2.6mm | 1 | $0.05 |
 | C1 | LDO input bulk | 10µF X5R 10V | basic | 0402 | 1 | $0.01 |
 | C2 | LDO output bulk | 22µF X5R 6.3V | basic | 0402 | 1 | $0.02 |
 | C3 | Module VCC decouple | 100nF X7R 16V | basic | 0402 | 1 | $0.005 |
@@ -167,9 +167,9 @@ Castellated pads, 1.27mm pitch, one edge of PCB.
 
 ## PCB Layout
 
-### Board size: ~17×24mm, 2-layer, 1.6mm FR4
+### Board size: ~13.4×23.8mm, 2-layer, 1.6mm FR4
 ```
-      17mm
+     13.4mm
   ┌────────────────┐
   │ J1 (U.FL)      │ ← GPS antenna connector, top edge
   │                │
@@ -188,7 +188,7 @@ Castellated pads, 1.27mm pitch, one edge of PCB.
   │ R2             │
   │ 5V GND RX TX   │ ← castellated pads, bottom edge
   └────────────────┘
-        24mm
+       23.8mm
 ```
 
 ### Layer stackup
@@ -322,7 +322,7 @@ These are the requirements we MUST meet to avoid the same pitfalls.
    opendroneid-core-c encoding, BLE Legacy + BLE 5 LR + WiFi Beacon broadcast,
    NVS config, WiFi AP web interface. Estimate: 2-3 weeks.
 2. **Antenna pattern compliance:** ESP32-C3-MINI-1 PCB antenna may not meet
-   ASTM F3586-22 omnidirectional requirement when mounted on our 17×24mm board.
+   ASTM F3586-22 omnidirectional requirement when mounted on our 13.4×23.8mm board.
    Needs antenna pattern measurement. Fallback: add U.FL for external 2.4G antenna.
 3. **GPS cold start:** 32s is borderline. Consider A-GNSS to reduce to <10s.
 4. **GPS antenna puck selection:** Recommend a specific cheap passive GPS antenna

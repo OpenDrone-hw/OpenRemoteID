@@ -24,10 +24,10 @@ Status: schematic and component selection complete, PCB layout not routed yet, n
 - **Status LED** + **boot/config button**
 - Castellated solder pads (4 pads: 5V, GND, RX, TX)
 
-### Specs
+### Target specs
 | Spec | Value |
 |------|-------|
-| Board size | ~17x24mm, 2-layer |
+| Board size | ~13.4x23.8mm, 2-layer |
 | Weight | <4g (excl. antenna puck) |
 | BOM cost | ~$3.90 (17 components) |
 | Power | 5V input, ~80mA typical |
@@ -81,7 +81,7 @@ No existing open-source RID firmware supports standalone GPS operation: ArduRemo
 
 ## Part of OpenDrone
 
-This module is part of the [OpenDrone](https://github.com/incutec-hw) open-source drone electronics ecosystem by [Incutec](https://incutec.com). Designed to work standalone with any drone, or integrated into the OpenFC Pro flight controller.
+This module is part of the [OpenDrone](https://github.com/incutec-hw) open-source drone electronics ecosystem by [Incutec](https://github.com/incutec-hw). Designed to work standalone with any drone, or integrated into the OpenFC Pro flight controller.
 
 ## License
 
