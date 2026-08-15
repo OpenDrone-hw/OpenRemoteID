@@ -1,89 +1,95 @@
 # OpenRemoteID
 
-Open-source Remote ID broadcast module for drones. FAA + EU compliant.
+Standalone Remote ID broadcast module for drones, FAA and EU compliant. Its
+own GPS, its own BLE and WiFi radio, its own processor: wire 5 V and ground
+from the drone and it broadcasts. An optional UART relays the GPS to the
+flight controller so Betaflight gets a position for free. A schematic and part
+selection exist in `hardware/`; the layout is not routed and there is no
+firmware. The full design reference is [hardware/DESIGN.md](hardware/DESIGN.md).
 
-Status: schematic and component selection complete, PCB layout not routed yet, no firmware yet.
+[![Status](https://img.shields.io/endpoint?url=https://opendrone.be/api/status/OpenRemoteID.json)](https://github.com/OpenDrone-hw/.github/blob/main/CONTRIBUTING.md#the-life-of-a-project)
+[![Discord](https://img.shields.io/badge/Discord-join-5865F2?logo=discord&logoColor=white)](https://discord.gg/v3sWmTcx3R)
 
-## Features
+Nobody holds this board yet: claim it on Discord.
 
-### Wireless
-- **ESP32-C3-MINI-1**: BLE 4/5 + WiFi, FCC/CE/IC pre-certified (2AC7Z-ESPC3MINI1)
-- Broadcasts BLE 4 Legacy + BLE 5 Long Range + WiFi Beacon simultaneously
-- ASTM F3411-22a / EN 4709-002 compliant message encoding via opendroneid-core-c
+## Why
 
-### GPS
-- **ATGM336H-5NR32**: GPS + BeiDou, AT6558R chipset
-- Built-in SAW filter, LNA, TCXO: no external RF components needed
-- 2.5m accuracy, 32s cold start, -162 dBm tracking sensitivity
-- External GPS antenna via U.FL/IPEX connector
+Remote ID is mandatory for most flying in the US and the EU, and the modules
+sold for it are closed, overpriced for what is a radio and a GPS, and often
+non-compliant: BlueMark's 2024 audit found wrong BLE advertisement types,
+drifting take-off positions and antenna patterns out of spec. An open module
+built on a pre-certified radio, with the compliance requirements written down
+next to the schematic, fixes both the price and the trust problem. The same
+parts and firmware then drop into a future OpenFC with Remote ID on board.
 
-### Interface
-- **5V** power input (from FC BEC or PDB)
-- **UART** GPS passthrough to flight controller (NMEA relay for Betaflight GPS Rescue/OSD)
-- **WiFi AP** configuration mode (operator ID, serial number, region)
-- **Status LED** + **boot/config button**
-- Castellated solder pads (4 pads: 5V, GND, RX, TX)
+## Specifications
 
-### Target specs
-| Spec | Value |
-|------|-------|
-| Board size | ~13.4x23.8mm, 2-layer |
-| Weight | <4g (excl. antenna puck) |
-| BOM cost | ~$3.90 (17 components) |
-| Power | 5V input, ~80mA typical |
-| Passives | All 0402 |
-| Assembly | JLCPCB, LCSC parts |
+| | |
+|---|---|
+| Radio | ESP32-C3-MINI-1-N4, FCC/CE/IC modular certification |
+| Broadcast | BLE 4 Legacy + BLE 5 Long Range + WiFi Beacon, simultaneous |
+| Standards | ASTM F3411-22a, ASTM F3586-22, EN 4709-002 |
+| GPS | ATGM336H-5NR32, GPS + BeiDou, external antenna on U.FL |
+| GPS performance | 2.5 m CEP50, 32 s cold start, -162 dBm tracking |
+| Power | 5 V in, 80 mA typical, 360 mA peak |
+| Interface | 4 castellated pads: 5V, GND, RX, TX |
+| Configuration | WiFi AP web page, boot button to enter |
+| Size | 13.4 x 23.8 mm, 2 layer |
+| Weight | under 4 g without antenna |
+| Parts | 17 placements, all 0402 passives, about 3.90 USD |
 
-## How It Works
+## Constraints
 
-The module is **fully standalone**: it has its own GPS, its own BLE/WiFi radio, and its own processor. Just wire 5V + GND from the drone. No flight controller integration needed for Remote ID compliance.
+- No RF design of our own: the radio is a pre-certified module and its RF path
+  is not modified, so the FCC ID (2AC7Z-ESPC3MINI1) carries over. Everything
+  outside the module is DC and digital.
+- Broadcast rules from ASTM F3411 and F3586: all three transports at 1 Hz or
+  more, non-connectable non-scannable BLE advertisements, WiFi NAN off in the
+  US, average EIRP at the horizon at least +3 dBm with no more than 4 dB
+  peak-to-average.
+- Take-off position is latched once and never updated in flight (14 CFR
+  89.320(h)(3)).
+- Standalone first: must work with nothing but 5 V and ground. FC integration
+  is optional and over UART.
+- JLCPCB assembly from LCSC parts, 0402 passives, no external EEPROM or crystal.
+- Selling it in the US needs an FAA Declaration of Compliance with an external
+  audit; in the EU, EN 4709-002 under 2019/945.
 
-**Optional GPS passthrough:** Wire the module's TX pad to an FC UART RX and the module relays NMEA data from its GPS to Betaflight/iNAV for GPS Rescue and OSD coordinates. The FC gets a GPS source for free.
+## Prior art
 
-**Configuration:** Hold the boot button during power-on to enter WiFi AP mode. Connect with any phone/laptop browser to set operator ID, serial number, and region.
+- [research/RemoteID_Modules_Research.md](research/RemoteID_Modules_Research.md):
+  the market of standalone, FC-connected and FPV inline modules, plus open
+  firmware projects.
+- [ArduRemoteID](https://github.com/ArduPilot/ArduRemoteID): open broadcast
+  engine, but FC-fed only (MAVLink, DroneCAN); no standalone GPS mode.
+- [opendroneid-core-c](https://github.com/opendroneid/opendroneid-core-c):
+  the reference F3411 message encoder.
+- [hardware/DESIGN.md](hardware/DESIGN.md): part choices, schematic notes,
+  layout rules, and the compliance findings distilled from BlueMark's audit.
 
-## Repository Structure
+## Open questions
 
-```
-OpenRemoteID/
-├── README.md
-├── hardware/
-│   ├── DESIGN.md            ← Full design document (netlist, BOM, layout, compliance)
-│   ├── OpenRemoteID.kicad_pro
-│   ├── OpenRemoteID.kicad_sch
-│   ├── OpenRemoteID.kicad_pcb
-│   ├── lib.kicad_sym        ← Local symbol library (16 symbols)
-│   ├── lib.pretty/          ← Local footprint library (17 footprints)
-│   ├── lib.3dshapes/        ← 3D models (STEP + WRL)
-│   └── datasheets/          ← IC datasheets (local copies)
-└── research/                ← Remote ID module market research
-```
+- Firmware: fork ArduRemoteID and add NMEA plus MSP parsers, or write from
+  scratch on opendroneid-core-c.
+- Antenna pattern: does the module's PCB antenna still meet F3586 mounted on
+  a 13.4 x 23.8 mm board, or does the 2.4 GHz side need its own U.FL.
+- The boot button (Omron B3U-1000P) is not on LCSC: consignment or an LCSC
+  equivalent.
+- 0.8 mm board instead of 1.6 mm to save weight.
+- Which GPS antenna puck to recommend or bundle.
+- ESP32-C3-MINI-1 pins 21/22: IO20/IO21 versus RXD0/TXD0 bonding, only one
+  pair may be connected.
 
-All libraries are project-local. No external library setup required.
+## In the line
 
-## Compliance
+What pairs with what, and what is available:
+[opendrone.be](https://opendrone.be).
 
-- **US:** 14 CFR Part 89, ASTM F3411-22a, ASTM F3586-22
-- **EU:** EU 2019/945 + 2022/851, EN 4709-002
-- FCC certification via ESP32-C3-MINI-1 modular approval
-- FAA Declaration of Compliance required before commercial sale
+## Contributing
 
-## Firmware
-
-Custom standalone firmware, not started yet. Planned stack:
-- [opendroneid-core-c](https://github.com/opendroneid/opendroneid-core-c) for ASTM F3411-22a message encoding
-- ESP-IDF / PlatformIO build system
-- NMEA parser for direct GPS input from ATGM336H
-- BLE + WiFi broadcast engine
-- NVS parameter storage, WiFi AP web configuration
-
-No existing open-source RID firmware supports standalone GPS operation: ArduRemoteID only accepts MAVLink/DroneCAN from a flight controller. This project needs its own firmware for standalone use.
-
-## Part of OpenDrone
-
-This module is part of the [OpenDrone](https://github.com/incutec-hw) open-source drone electronics ecosystem by [Incutec](https://github.com/incutec-hw). Designed to work standalone with any drone, or integrated into the OpenFC Pro flight controller.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 
-Hardware: [CERN-OHL-S-2.0](https://ohwr.org/cern_ohl_s_v2.txt)
-Firmware: MIT (planned)
+Hardware licensed under [CERN-OHL-S-2.0](https://ohwr.org/cern_ohl_s_v2.txt),
+see [LICENSE](LICENSE). Firmware, once it exists, MIT.
