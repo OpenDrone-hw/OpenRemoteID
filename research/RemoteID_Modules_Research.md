@@ -2,6 +2,10 @@
 
 Last updated: 2026-03-26
 
+This is a dated market snapshot, not evidence about OpenRemoteID and not a
+current certification register. Verify prices, availability and regulatory
+status against primary sources before using them.
+
 ---
 
 ## Table of Contents
