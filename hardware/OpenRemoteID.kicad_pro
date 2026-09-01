@@ -689,7 +689,9 @@
       ""
     ]
   ],
-  "text_variables": {},
+  "text_variables": {
+    "OPENDRONE_LIB": "${KIPRJMOD}/KiCad-Library"
+  },
   "tuning_profiles": {
     "meta": {
       "version": 0

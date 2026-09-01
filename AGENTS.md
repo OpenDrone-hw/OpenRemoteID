@@ -13,6 +13,7 @@ certified or released product.
 | Schematic | `hardware/OpenRemoteID.kicad_sch` |
 | Board | `hardware/OpenRemoteID.kicad_pcb`, 2 copper layers, 1.6 mm |
 | Local library | `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/` |
+| Shared library | `hardware/KiCad-Library/`, pinned submodule; exact component datasheets resolve through `OPENDRONE_LIB` |
 | Design boundary | `hardware/DESIGN.md` |
 | License | CERN-OHL-S-2.0 |
 
