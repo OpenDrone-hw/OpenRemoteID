@@ -49,10 +49,13 @@ No firmware source or executable interface contract is checked in.
 ## Verification
 
 ```sh
-kicad-cli sch erc --exit-code-violations hardware/OpenRemoteID.kicad_sch
-kicad-cli pcb drc --schematic-parity --exit-code-violations hardware/OpenRemoteID.kicad_pcb
+kicad-cli sch erc hardware/OpenRemoteID.kicad_sch
+kicad-cli pcb drc --schematic-parity hardware/OpenRemoteID.kicad_pcb
 git diff --check
 ```
 
-The checked-in design does not currently pass ERC or DRC. Report exact results;
-do not normalize the failing baseline into an accepted state.
+Report exact ERC and DRC results. Findings only become release-approved through
+the reviewed limits in the OpenDrone
+[release standard](https://github.com/OpenDrone-hw/.github/blob/main/RELEASES.md);
+new types and increased counts still block release preparation. Reusable release
+automation comes from Incutec hardware tooling.
