@@ -21,8 +21,8 @@ certified or released product.
 
 The schematic and PCB contain six placed devices: ESP32-C3-MINI-1-N4 (`U2`),
 ATGM336H-5NR-32 (`U3`), ME6211C33M5G-N (`LDO2`), U.FL (`RF2`), switch (`SW2`)
-and LED (`LED2`). The PCB has no tracks, vias or copper zones. KiCad 10 ERC
-reports 85 errors and one warning. Treat all other architecture, pin mapping,
+and LED (`LED2`). The PCB has no tracks, vias or copper zones, and ERC does
+not pass; run it for the current findings. Treat all other architecture, pin mapping,
 dimensions, performance and compliance language as intent until the design or
 test evidence proves it.
 
@@ -57,5 +57,4 @@ git diff --check
 Report exact ERC and DRC results. Findings only become release-approved through
 the reviewed limits in the OpenDrone
 [release standard](https://github.com/OpenDrone-hw/.github/blob/main/RELEASES.md);
-new types and increased counts still block release preparation. Reusable release
-automation comes from Incutec hardware tooling.
+new types and increased counts still block release preparation.
