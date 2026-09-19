@@ -6,9 +6,9 @@ ESP32-C3-MINI-1 radio module and an ATGM336H GNSS receiver.
 ## Status
 
 This repository is an incomplete hardware concept, not a compliant or released
-product. The KiCad schematic contains six placed devices and currently reports
-85 ERC errors. The two-layer PCB contains the same six footprints and no routed
-tracks, vias or copper zones. No firmware is present.
+product. The KiCad schematic contains six placed devices and does not pass ERC; run it
+for the current findings. The two-layer PCB contains the same six footprints and
+no routed tracks, vias or copper zones. No firmware is present.
 
 The intended interfaces are 5 V power, ground, UART RX/TX, a GNSS antenna on
 U.FL, a status LED and a push button. See [hardware/DESIGN.md](hardware/DESIGN.md)
