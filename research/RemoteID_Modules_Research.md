@@ -1,4 +1,4 @@
-# Remote ID Modules & Solutions — Complete Market Research (2025-2026)
+# Remote ID Modules & Solutions: Complete Market Research (2025-2026)
 
 Last updated: 2026-03-26
 
@@ -443,7 +443,7 @@ Most major drone manufacturers (Autel, Skydio, Parrot) now include Remote ID in 
 | **Protocols** | BT4, BT5, WiFi Beacon, WiFi NaN |
 | **Standards** | ASTM F3411-19, ASTM F3411-22a, ASD-STAN prEN 4709-002 |
 | **Supported HW** | ESP32/S3/C3, nRF52840, TI CC2640, Linux, Raspberry Pi |
-| **Notes** | Foundation library used by ArduRemoteID and many other projects. Not standalone firmware — it's a library. |
+| **Notes** | Foundation library used by ArduRemoteID and many other projects. Not standalone firmware: it's a library. |
 
 ### 27. sxjack/uav_electronic_ids
 
