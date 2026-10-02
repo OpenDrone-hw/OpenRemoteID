@@ -1,5 +1,7 @@
 # OpenRemoteID
 
+[![Status](https://img.shields.io/endpoint?url=https://opendrone.be/api/status/OpenRemoteID.json)](https://github.com/OpenDrone-hw/.github/blob/main/CONTRIBUTING.md#the-life-of-a-project)
+
 Open hardware for a standalone broadcast Remote ID module built around an
 ESP32-C3-MINI-1 radio module and an ATGM336H GNSS receiver.
 
@@ -20,7 +22,7 @@ for the boundary between checked-in design facts and design intent.
 - `hardware/OpenRemoteID.kicad_pcb`: incomplete two-layer placement
 - `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/`:
   project-local libraries
-- `hardware/datasheets/`: component datasheets
+- `hardware/DESIGN.md`: design boundary, design intent and datasheet links
 - `research/`: market research; it is reference material, not product evidence
 
 ## Regulatory position

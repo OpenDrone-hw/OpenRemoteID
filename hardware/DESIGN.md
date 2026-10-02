@@ -50,3 +50,16 @@ ASTM F3411 and EN 4709-002 are design targets. Do not describe the module as
 compliant, certified, approved or legal for sale until product-level evidence
 and the required declarations exist. Component approvals are input evidence,
 not a finished-product conclusion.
+
+## Datasheets
+
+Linked at the source, not copied into this repository. Placed devices first.
+
+| Part | Ref | Datasheet |
+|---|---|---|
+| ESP32-C3-MINI-1-N4 | U2 | [Espressif module datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf), [ESP32-C3 SoC datasheet](https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf) |
+| ATGM336H-5NR32 | U3 | [LCSC C5117921](https://www.lcsc.com/datasheet/C5117921.pdf) |
+| ME6211C33M5G-N | LDO2 | [LCSC C82942](https://www.lcsc.com/datasheet/C82942.pdf) |
+| ATGM336H-5N31 | not placed | [LCSC C90770](https://www.lcsc.com/datasheet/C90770.pdf) |
+| ATGM332D-5NR32 | not placed | [LCSC C3037611](https://www.lcsc.com/datasheet/C3037611.pdf) |
+| USBLC6-2SC6 | not placed | [STMicroelectronics](https://www.st.com/resource/en/datasheet/usblc6-2.pdf) |
