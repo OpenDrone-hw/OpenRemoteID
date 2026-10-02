@@ -36,7 +36,7 @@ datasheet does not establish product behaviour.
 | Board | `hardware/OpenRemoteID.kicad_pcb`, 2 copper layers, 1.6 mm |
 | Local library | `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/`, nickname `lib` |
 | Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
-| Local datasheets | `hardware/datasheets/` |
+| Local datasheets | Linked from `hardware/DESIGN.md` "Datasheets"; no PDFs are vendored |
 | Design boundary | `hardware/DESIGN.md` |
 | License | CERN-OHL-S-2.0 |
 
