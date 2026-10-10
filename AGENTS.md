@@ -22,7 +22,7 @@ Treat every other architecture, pin mapping, dimension, performance and
 compliance statement as intent until the design or test evidence proves it.
 Do not claim certification, compliance, approval, current draw, RF range,
 board size or BOM cost without product-level evidence in this repository.
-`research/` is sourced reference material: a competitor claim or a component
+The [Remote ID module research](https://app.notion.com/p/3f5fe06764e18140b42ce5c804051b9d) is sourced reference material: a competitor claim or a component
 datasheet does not establish product behaviour.
 
 ## Repo

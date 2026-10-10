@@ -23,7 +23,7 @@ for the boundary between checked-in design facts and design intent.
 - `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/`:
   project-local libraries
 - `hardware/DESIGN.md`: design boundary, design intent and datasheet links
-- `research/`: market research; it is reference material, not product evidence
+- Remote ID module market research (reference material, not product evidence): [Notion Research entry](https://app.notion.com/p/3f5fe06764e18140b42ce5c804051b9d)
 
 ## Regulatory position
 
