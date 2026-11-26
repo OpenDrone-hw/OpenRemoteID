@@ -29,73 +29,13 @@ datasheet does not establish product behaviour.
 
 | | |
 |---|---|
-| Status | See the `status-*` topic on the repo. Never written here. |
-| Designed in | KiCad 10 |
 | KiCad project | `hardware/OpenRemoteID.kicad_pro` |
 | Root schematic | `hardware/OpenRemoteID.kicad_sch` |
 | Board | `hardware/OpenRemoteID.kicad_pcb`, 2 copper layers, 1.6 mm |
-| Local library | `hardware/lib.kicad_sym`, `hardware/lib.pretty/`, `hardware/lib.3dshapes/`, nickname `lib` |
-| Shared library | `hardware/KiCad-Library/`, submodule of [OpenDrone-hw/KiCad-Library](https://github.com/OpenDrone-hw/KiCad-Library), nickname `OpenDrone`; exact component datasheets resolve through the project text variable `OPENDRONE_LIB` |
 | Local datasheets | Linked from `hardware/DESIGN.md` "Datasheets"; no PDFs are vendored |
 | Design boundary | `hardware/DESIGN.md` |
-| License | CERN-OHL-S-2.0 |
-
-## Environment
-
-```sh
-# schematic and board checks
-kicad-cli sch erc hardware/OpenRemoteID.kicad_sch
-kicad-cli pcb drc --schematic-parity --refill-zones hardware/OpenRemoteID.kicad_pcb
-git diff --check
-
-# netlist, for scripted analysis
-kicad-cli sch export netlist --format kicadsexpr -o /tmp/OpenRemoteID.net hardware/OpenRemoteID.kicad_sch
-```
-
-Report exact ERC and DRC results. Findings only become release-approved
-through the reviewed limits in the OpenDrone
-[release standard](https://github.com/OpenDrone-hw/.github/blob/main/RELEASES.md);
-new types and increased counts block release preparation. On macOS
-`kicad-cli` is at `/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli`;
-`KPY` is KiCad's bundled Python,
-`/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/Current/bin/python3`.
 
 ## Rules
 
-Identical in every OpenDrone board repo. Do not edit here; edit the template.
+The shared [Board rules](https://github.com/OpenDrone-hw/hardware-template/blob/main/AGENTS.md#board-rules) apply. Only what differs for this board is listed here.
 
-- **Never text-edit** `.kicad_sch`, `.kicad_pcb` or `.kicad_dru`. Use KiCad, or
-  kicad-skip / the pcbnew API for scripted changes. `.kicad_pro` is JSON and may
-  be edited directly for metadata.
-  kicad-skip cannot round-trip KiCad 10 schematics: use a full S-expression
-  parser, `kicad-cli sch upgrade --force`, then an ERC and netlist diff.
-- **Metadata yes, connections no.** An agent may write BOM and documentation
-  fields (MPN, Manufacturer, LCSC, Cost, Datasheet, text variables). An agent
-  may not change nets, wiring, routing, placement, footprint assignment, or any
-  value that changes the circuit.
-- **Close KiCad before any write to a KiCad file.** KiCad caches library tables
-  at process start and overwrites files on save.
-- **Reuse before you draw.** Check the `OpenDrone` library and its
-  `PARTS-USED.md` first. If the part is there we have already sourced,
-  footprinted and shipped it, and its symbol links to the exact committed
-  datasheet: place it from `OpenDrone`. Draw a new part into `lib` only when
-  the catalogue has nothing that fits, imported with
-  `easyeda2kicad` from its LCSC number. Pulling a newer catalogue is a
-  deliberate, reviewed commit: `git submodule update --remote
-  hardware/KiCad-Library`, then DRC.
-- **One person holds a board layout at a time.** KiCad files do not merge. Say
-  on Discord that you are taking it. See [CONTRIBUTING.md](CONTRIBUTING.md).
-- **Run ERC and DRC before every pull request.** Existing approved findings
-  may remain; a new type or increased count must be reviewed before merge.
-  Commands are in Environment above.
-
-## By task
-
-Board-specific paths are in Environment above. `KPY` is KiCad's bundled
-Python named there.
-
-- Check the design: run the ERC and DRC commands in Environment before every pull request.
-- Add a part: place it from the `OpenDrone` library if `hardware/KiCad-Library/PARTS-USED.md` lists it; otherwise import it into `lib` with `$KPY <hardware-tooling>/hardware/kicad/import_part.py` (read `--help` first), KiCad closed.
-- Render the board for the README: `$KPY <hardware-tooling>/hardware/kicad/render_board.py hardware/OpenRemoteID.kicad_pcb --outdir images`, KiCad closed.
-- Analyse the netlist: export it with the netlist command in Environment, then read it with a script; never hand-write a second BOM.
-- Update the shared library: `git submodule update --remote hardware/KiCad-Library`, run DRC, commit as its own reviewed change.
