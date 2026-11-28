@@ -481,6 +481,17 @@ Most major drone manufacturers (Autel, Skydio, Parrot) now include Remote ID in 
 
 Several community guides exist for building your own RID transmitter on generic ESP32-S3 or ESP32-C3 dev boards (~$5-10 hardware cost) using ArduRemoteID firmware. Requires a flight controller running ArduPilot for GPS data.
 
+### 31. librid
+
+|  |  |
+| --- | --- |
+| Repository | <https://github.com/tuupola/librid> |
+| License | MIT |
+| Purpose | Alternative encoding and decoding C library for Remote ID messages |
+| Standards | ASTM F3411-22a, DIN EN 4709-002 |
+| Supported HW | Tested with ESP32-S3, ESP32-C3, nRF54LM20A, nRF52840, nRF5340, Linux |
+| Notes | Output is byte to byte compatible with opendroneid-core-c. |
+
 ## Summary Comparison Table
 
 | # | Module | Price | Weight | GPS | Protocols | Compliance | Interface | Open Source |
@@ -558,6 +569,7 @@ Several community guides exist for building your own RID transmitter on generic 
 - [Pilot Institute Remote ID Guide](https://pilotinstitute.com/remote-id-drone-modules/)
 - [GetFPV Remote ID](https://www.getfpv.com/electronics/remote-id.html)
 - [sxjack/uav_electronic_ids](https://github.com/sxjack/uav_electronic_ids)
+- [tuupola/librid](https://github.com/tuupola/librid)
 
 ## Sources
 
